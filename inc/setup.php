@@ -14,6 +14,7 @@ class JM_Theme_Setup {
         add_action( 'wp_footer', array( $this, 'deregister_scripts' ) );
         add_action( 'upload_mimes', array( $this, 'add_file_types_to_uploads' ), 1, 1 );
         add_filter( 'intermediate_image_sizes_advanced', array( $this, 'remove_default_image_sizes' ) );
+        add_filter('oembed_result', array( $this, 'change_youtube_oembed_url' ), 10, 3);
         add_filter( 'big_image_size_threshold', '__return_false' );
         add_filter( 'auto_plugin_update_send_email', '__return_false' );
         add_filter( 'auto_theme_update_send_email', '__return_false' );
@@ -73,6 +74,13 @@ class JM_Theme_Setup {
         unset( $sizes['medium'] );
         unset( $sizes['medium_large'] );
         return $sizes;
+    }
+
+    function change_youtube_oembed_url($html, $url, $args) {
+        if (strpos($url, 'youtube.com') !== false) {
+            $html = str_replace('youtube.com', 'youtube-nocookie.com', $html);
+        }
+        return $html;
     }
 
     /**
