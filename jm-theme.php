@@ -41,12 +41,13 @@ class JM_Theme {
    */
   private function includeFiles() {
     $files = array(
-      'inc/cpt-taxonomy.php',
-      'inc/utilities.php',
       'inc/setup.php',
-      'inc/enqueues.php',
-      'inc/shortcodes.php',
       'inc/metaboxes.php',
+      'inc/enqueues.php',
+      'inc/custom-post-types.php',
+      'inc/taxonomies.php',
+      'inc/utilities.php',
+      'inc/shortcodes.php',
       'inc/analytics.php'
     );
     foreach ($files as $file) {
